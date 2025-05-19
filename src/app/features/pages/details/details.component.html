@@ -1,0 +1,39 @@
+
+
+<!-- <i class="fa-solid fa-pen-to-square"></i> -->
+ <!-- <i class="fa-solid fa-trash"></i> -->
+
+ <section class="p-4">
+  <h1 class="text-center text-red-600 font-bold text-[30px] my-5">Details Employee</h1>
+
+  <!-- صف يحتوي على 3 أعمدة -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+
+    <!-- الصورة -->
+    <div class="flex justify-center">
+      <img
+        src="/images/businessman-waiting-with-his-briefcase.jpg"
+        class="w-full max-w-xs rounded-lg shadow-md"
+        alt="business"
+      />
+    </div>
+
+    <!-- التفاصيل -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold"><span class="font-bold">Name:</span> {{ detailsEmployee.empName }}</h2>
+      <h2 class="text-xl font-semibold"><span class="font-bold">Address:</span> {{ detailsEmployee.empAddress }}</h2>
+      <h2 class="text-xl font-semibold"><span class="font-bold">Phone:</span> {{ detailsEmployee.empPhone }}</h2>
+      <h2 class="text-xl font-semibold"><span class="font-bold">Email:</span> {{ detailsEmployee.empEmail }}</h2>
+    </div>
+
+    <!-- أيقونة الحذف -->
+    <div class="flex justify-center md:justify-center">
+      <button (click)="deleteEmployee(detailsEmployee.empId)" class="text-red-600 hover:text-red-800 text-3xl ">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
