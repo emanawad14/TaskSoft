@@ -12,3 +12,18 @@
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
 
+
+
+::-webkit-scrollbar {
+    width: 9px;
+ }
+ 
+ ::-webkit-scrollbar-track {
+    background-color: #e0e5ec;
+ }
+ 
+ ::-webkit-scrollbar-thumb {
+    background-color: #c34a36;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(81, 72, 72, 0.5) inset;
+ }

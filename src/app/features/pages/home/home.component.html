@@ -1,30 +1,45 @@
-<div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+<button data-modal-target="default-modal" data-modal-toggle="default-modal" 
+class="block text-white my-5 ms-7 bg-[#c34a36] hover:bg-[#672c22] focus:ring-4
+ focus:outline-none focus:ring-[#c34a36] font-medium rounded-lg text-sm px-5 py-2.5 
+ text-center "
+  type="button">
+  Add Employee
+</button>
+
+
+<div class="relative w-full overflow-x-auto">
+    <table class="min-w-full text-sm text-left rtl:text-right text-gray-500 whitespace-nowrap ">
+        <thead class="text-xs text-gray-700  bg-[#1D1D1D1D]  ">
             <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
                   Name
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
                    Address
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
                   Email
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
                    Phone
+                </th>
+                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
+                    Edit
                 </th>
                 
             </tr>
         </thead>
         <tbody>
             
-            @for (item of employees; track $index) {
+            @for (item of employees  ; track $index) {
 
-                <tr  [routerLink]="['/details' , item.empId]" class="bg-white cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{item.empName}}
-                </th>
+                <tr   class=" cursor-pointer border-b   border-gray-200">
+                <td class="px-6 py-4 text-white font-medium">
+          <a [routerLink]="['/details', item.empId]" class="text-[#c34a36] capitalize font-bold  hover:underline">
+            {{ item.empName }}
+          </a>
+        </td>
                 <td class="px-6 py-4">
                    {{item.empAddress}}
                 </td>
@@ -34,11 +49,74 @@
                 <td class="px-6 py-4">
                   {{item.empPhone}}
                 </td>
+                <td class="px-6 py-4">
+                  <i class="fa-solid fa-pen-to-square ms-3"></i>
+                </td>
             </tr>
             }
           
             
         </tbody>
     </table>
+</div>
+
+
+
+
+
+<div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+       
+        <div class="relative bg-white rounded-lg shadow-sm p-6 ">
+          
+             <h2 class="text-center font-bold mb-4 text-3xl text-[#c34a36] ">List of Details Employee </h2>
+
+   
+    <form   [formGroup]="employeeForm" (ngSubmit)="isEditMode ? editEmployee() : addEmployee()">
+        <div class="mb-4">
+            <label for="name" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Name</label>
+            <input
+            formControlName="empName"
+            
+            type="text" id="name" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+    
+       <div class="mb-4">
+            <label for="email" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Email</label>
+            <input
+            formControlName="empEmail"
+            
+            type="email" id="email" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+    
+
+           <div class="mb-4">
+            <label for="address" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Address</label>
+            <input
+            formControlName="empAddress"
+            
+            type="text" id="address" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+    
+
+           <div class="mb-4">
+            <label for="phone" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Phone</label>
+            <input
+            formControlName="empPhone"
+            
+            type="text" id="phone" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+       
+        <div class="border-b my-4 border-4">
+
+        </div>
+
+        <button type="submit" class="bg-[#c34a36] text-white px-4 py-2 rounded">{{ isEditMode ? 'Update' : 'Add' }} Employee</button>
+        
+    
+    </form>
+
+        </div>
+    </div>
 </div>
 

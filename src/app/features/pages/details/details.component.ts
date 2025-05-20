@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee/employee.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Iemployee } from '../../interfaces/iemployee';
 
 @Component({
   selector: 'app-details',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
@@ -13,7 +13,8 @@ export class DetailsComponent implements OnInit {
 
   detailsEmployee:Iemployee ={} as Iemployee
   private readonly employeeServices=inject(EmployeeService);
-  private readonly activatedRoute=inject(ActivatedRoute)
+  private readonly activatedRoute=inject(ActivatedRoute);
+  
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(
@@ -48,7 +49,8 @@ export class DetailsComponent implements OnInit {
   this.employeeServices.deleteByID(id).subscribe({
     next: (res) => {
       console.log('Employee deleted:', res);
-      // this.getAllEmployees(); // لو عندك دالة بتجيب كل الموظفين
+      alert("Employee Delete successfully! ")
+      this.employeeServices.getAllEmployees();
     },
     error: (err) => {
       console.error('Delete error:', err);

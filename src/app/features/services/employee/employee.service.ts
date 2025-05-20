@@ -31,4 +31,20 @@ export class EmployeeService {
   {
     return this.http.get(`http://task.soft-zone.net/api/Employees/deleteEmpByID/${id}`)
   }
+
+
+//*********************** Add Employee *************************** */
+   addEmployee(employee:any):Observable<any>
+   {
+    return this.http.post('http://task.soft-zone.net/api/Employees/addEmployee', employee)
+   }
+
+   //*********************** Edit Employee *************************** */
+
+
+   editEmployee(employee:any):Observable<any>
+   {
+    return this.http.post('http://task.soft-zone.net/api/Employees/editEmployee' , employee)
+   }
+
 }
