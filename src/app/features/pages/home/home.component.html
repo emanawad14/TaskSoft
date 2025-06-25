@@ -9,24 +9,31 @@ class="block text-white my-5 ms-7 bg-[#c34a36] hover:bg-[#672c22] focus:ring-4
 
 
 <div class="relative w-full overflow-x-auto">
-    <table class="min-w-full text-sm text-left rtl:text-right text-gray-500 whitespace-nowrap ">
-        <thead class="text-xs text-gray-700  bg-[#1D1D1D1D]  ">
-            <tr>
-                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
+    <table class="min-w-full text-sm text-left rtl:text-right text-gray-500 whitespace-nowrap 
+    md:table block 
+    ">
+        <thead class="text-xs text-gray-700 hidden md:table-header-group  bg-[#1D1D1D1D]  ">
+            <tr class="block md:table-row">
+                <th scope="col" class="block md:table-cell px-8 py-4 text-[#040404] font-bold text-[20px]">
                   Name
                 </th>
-                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
+                <th scope="col" class="block md:table-cell px-8 py-4 text-[#040404] font-bold text-[20px]">
                    Address
                 </th>
-                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
+                <th scope="col" class="block md:table-cell px-8 py-4 text-[#040404] font-bold text-[20px]">
                   Email
                 </th>
-                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
+                <th scope="col" class="block md:table-cell px-8 py-4 text-[#040404] font-bold text-[20px]">
                    Phone
                 </th>
-                <th scope="col" class="px-8 py-4 text-[#040404] font-bold text-[20px]">
+                <th 
+                
+                
+                scope="col" class="block md:table-cell px-8 py-4 text-[#040404] font-bold text-[20px]">
                     Edit
                 </th>
+              
+                
                 
             </tr>
         </thead>
@@ -49,9 +56,15 @@ class="block text-white my-5 ms-7 bg-[#c34a36] hover:bg-[#672c22] focus:ring-4
                 <td class="px-6 py-4">
                   {{item.empPhone}}
                 </td>
-                <td class="px-6 py-4">
+                <td 
+
+               (click)="PatchValue(item)" 
+                 data-modal-target="default-modalUpdate" data-modal-toggle="default-modalUpdate" 
+                class="px-6 py-4">
                   <i class="fa-solid fa-pen-to-square ms-3"></i>
                 </td>
+               
+                
             </tr>
             }
           
@@ -64,8 +77,8 @@ class="block text-white my-5 ms-7 bg-[#c34a36] hover:bg-[#672c22] focus:ring-4
 
 
 
-<div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
+<div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-black bg-opacity-80  overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4  w-full max-w-2xl max-h-full  ">
        
         <div class="relative bg-white rounded-lg shadow-sm p-6 ">
           
@@ -107,9 +120,8 @@ class="block text-white my-5 ms-7 bg-[#c34a36] hover:bg-[#672c22] focus:ring-4
             type="text" id="phone" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
         </div>
        
-        <div class="border-b my-4 border-4">
-
-        </div>
+        
+        
 
         <button type="submit" class="bg-[#c34a36] text-white px-4 py-2 rounded">{{ isEditMode ? 'Update' : 'Add' }} Employee</button>
         
@@ -119,4 +131,65 @@ class="block text-white my-5 ms-7 bg-[#c34a36] hover:bg-[#672c22] focus:ring-4
         </div>
     </div>
 </div>
+
+
+
+
+
+<div id="default-modalUpdate" tabindex="-1" aria-hidden="true" class="hidden bg-black bg-opacity-80 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+       
+        <div class="relative bg-white rounded-lg shadow-sm p-6 ">
+          
+             <h2 class="text-center font-bold mb-4 text-3xl text-[#c34a36] ">UpDate Employee </h2>
+
+   
+    <form  [formGroup]="employeeForm" (ngSubmit)="editEmployee()">
+        <div class="mb-4">
+            <label for="name" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Name</label>
+            <input
+            formControlName="empName"
+            
+            type="text" id="name" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+    
+       <div class="mb-4">
+            <label for="email" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Email</label>
+            <input
+            formControlName="empEmail"
+            
+            type="email" id="email" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+    
+
+           <div class="mb-4">
+            <label for="address" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Address</label>
+            <input
+            formControlName="empAddress"
+            
+            type="text" id="address" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+    
+
+           <div class="mb-4">
+            <label for="phone" class="block mb-2 text-lg font-medium text-[#040404]  w-4/5 mx-auto dark:text-white">Phone</label>
+            <input
+            formControlName="empPhone"
+            
+            type="text" id="phone" class=" border border-gray-300 text-sm rounded text-gray-900  block w-4/5 mx-auto p-2.5  ">     
+        </div>
+       
+     
+        
+
+        <button type="submit" class="bg-[#c34a36] text-white px-4 py-2 rounded">Update Employee</button>
+        
+    
+    </form>
+
+        </div>
+    </div>
+</div>
+
+
 

@@ -42,9 +42,12 @@ export class EmployeeService {
    //*********************** Edit Employee *************************** */
 
 
-   editEmployee(employee:any):Observable<any>
-   {
-    return this.http.post('http://task.soft-zone.net/api/Employees/editEmployee' , employee)
-   }
+   editEmployee(employee: any): Observable<any> {
+  return this.http.post(
+    `http://task.soft-zone.net/api/Employees/editEmployee`,
+    employee
+  );
+}
+
 
 }
